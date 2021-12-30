@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 import {useDispatch} from "react-redux";
-import {showModal} from "../../modules/modals";
+import {dropModal, showModal} from "../../modules/modals";
 import CommonModal from "../modal/commonModal";
 
 const MainDiv = styled.div`
@@ -22,15 +22,17 @@ const Main = () => {
     const dispatch = useDispatch();
 
     const handleShowModal = (type: string) => {
-        dispatch(showModal(CommonModal, type === 'temp01' ? tempFunc01 : tempFunc02));
+        dispatch(showModal(CommonModal, type === 'temp01' ? tempMethod01 : tempMethod02));
     };
 
-    const tempFunc01 = () => {
+    const tempMethod01 = () => {
         console.log('method01');
+        dispatch(dropModal());
     };
 
-    const tempFunc02 = () => {
+    const tempMethod02 = () => {
         console.log('method02');
+        dispatch(dropModal());
     };
 
     return (
